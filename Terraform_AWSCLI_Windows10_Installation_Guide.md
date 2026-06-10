@@ -252,9 +252,42 @@ List All AWS regions
 
 aws ec2 describe-regions --query "Regions[*].RegionName" --output table
 
+PS C:\Users\sreej\Desktop\sreejith_devops\Microservices-E-Commerce-eks-project\s3-buckets> aws ec2 describe-regions --query "Regions[*].RegionName" --output table
+--------------------                                                                                                                                                                                                                                                                                                                                                                       
+|  DescribeRegions |
++------------------+
+|  ap-south-1      |
+|  eu-north-1      |
+|  eu-west-3       |
+|  eu-west-2       |
+|  eu-west-1       |
+|  ap-northeast-3  |
+|  ap-northeast-2  |
+|  ap-northeast-1  |
+|  ca-central-1    |
+|  sa-east-1       |
+|  ap-southeast-1  |
+|  ap-southeast-2  |
+|  eu-central-1    |
+|  us-east-1       |
+|  us-east-2       |
+|  us-west-1       |
+|  us-west-2       |
++------------------+
 List avaliability zones for a specific region
 
 aws ec2 describe-availability-zones --region us-east-1 --query "AvailabilityZones[*].ZoneName" --output table
+PS C:\Users\sreej\Desktop\sreejith_devops\Microservices-E-Commerce-eks-project\s3-buckets> aws ec2 describe-availability-zones --region us-east-1 --query "AvailabilityZones[*].ZoneName" --output table
+---------------------------                                                                                                                                                                                                                                                                                                                                                                
+|DescribeAvailabilityZones|
++-------------------------+
+|  us-east-1a             |
+|  us-east-1b             |
+|  us-east-1c             |
+|  us-east-1d             |
+|  us-east-1e             |
+|  us-east-1f             |
++-------------------------+
 ```
 
 ---
