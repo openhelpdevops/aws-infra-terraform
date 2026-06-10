@@ -72,7 +72,6 @@ C:\Terraform
 Open:
 
 ```text
-Edit the system environment variables
 Press Windows Key
 Search for Environment Variables
 Select Edit the system environment variables
