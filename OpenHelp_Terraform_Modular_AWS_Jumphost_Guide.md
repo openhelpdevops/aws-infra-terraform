@@ -267,6 +267,64 @@ Creates:
 - EKS custom policy
 - Required AWS managed policy attachments
 
+Note:-
+
+Create key pair from:-
+
+Method 1: AWS Console (Recommended for Beginners)
+
+Login to AWS Console:
+
+AWS Console EC2
+
+Steps
+Open EC2
+Left Menu → Network & Security
+Click Key Pairs
+Click Create Key Pair
+
+Fill:
+
+Name: openhelp-key
+Key Pair Type: RSA
+Private Key Format: .pem
+
+
+List the ami image id as well
+
+
+PS C:\Users\sreej\Desktop\sreejith_devops\Microservices-E-Commerce-eks-project\openhelp-terraform-modular-aws-jumphost> aws ssm get-parameters --names /aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64 --query "Parameters[0].Value" --output text
+ami-0152204c1a187337c                                                                                                                                                                                                                                                                                                                                                                      
+
+use the correct bucket
+
+
+PS C:\Users\sreej\Desktop\sreejith_devops\Microservices-E-Commerce-eks-project\openhelp-terraform-modular-aws-jumphost> aws s3 ls                                                                                                                                       
+2026-06-10 08:38:36 openhelpbucket1
+2026-06-10 08:38:36 openhelpbucket2
+
+
+
+
+variable "allowed_cidr" {
+  description = "CIDR allowed to access jumphost ports"
+  type        = string
+  default     = "0.0.0.0/0"
+}
+
+
+variable "allowed_cidr" {
+  description = "CIDR allowed to access jumphost ports"
+  type        = string
+  default     = "217.119.64.63/32"
+}
+
+Replace ip with your public ip you get from whatismyip.com
+217.119.64.63
+
+
+
+
 > `AdministratorAccess` is intentionally removed from this standard module. Add it only in temporary labs if needed.
 
 ### 8.4 EC2 Jumphost Module
