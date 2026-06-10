@@ -207,10 +207,15 @@ Navigate:
 
 ```text
 IAM
-→ Users
-→ Select User
+→ Users->Create User
+usermame:sreejith Dont select any other option , clieck next
+Attach policies>select Administrative Access
+
+→ Select User sreejith
 → Security Credentials
-→ Create Access Key
+→ Create Access Key->CLI
+
+you will get Access key and Secret key now
 ```
 
 Save:
