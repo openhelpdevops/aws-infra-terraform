@@ -39,27 +39,6 @@ C:\Terraform
 └── terraform.exe
 ```
 
----
-
-## Screenshot Placeholder
-
-Take a screenshot of:
-
-- Download page
-- Extract All dialog
-- C:\Terraform folder showing terraform.exe
-
-Insert screenshots below when publishing this document.
-
-```text
-[Screenshot 1 - Terraform Download Page]
-
-[Screenshot 2 - Extract ZIP]
-
-[Screenshot 3 - terraform.exe in C:\Terraform]
-```
-
----
 
 ## Step 3: Add Terraform to PATH
 
