@@ -524,6 +524,8 @@ Example output:
 ```text
 bucket1_id = "openhelpbucket1"
 bucket2_id = "openhelpbucket2"
+
+Go to aws UI>>s2>> see buckets are created there
 ```
 
 ### Why we use it
