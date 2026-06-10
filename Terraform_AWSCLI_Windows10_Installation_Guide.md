@@ -247,6 +247,14 @@ us-east-1
 
 Default output format [None]:
 json
+
+List All AWS regions
+
+aws ec2 describe-regions --query "Regions[*].RegionName" --output table
+
+List avaliability zones for a specific region
+
+aws ec2 describe-availability-zones --region us-east-1 --query "AvailabilityZones[*].ZoneName" --output table
 ```
 
 ---
