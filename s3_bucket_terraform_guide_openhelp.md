@@ -86,32 +86,34 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "bucket1" {
-  bucket = "openhelpbucket1"
+  bucket = var.bucket1_name
 
   tags = {
-    Name        = "openhelpbucket1"
-    Environment = "dev"
+    Name        = var.bucket1_name
+    Environment = var.environment
   }
 }
 
 resource "aws_s3_bucket_versioning" "bucket1_versioning" {
   bucket = aws_s3_bucket.bucket1.id
+
   versioning_configuration {
     status = "Enabled"
   }
 }
 
 resource "aws_s3_bucket" "bucket2" {
-  bucket = "openhelpbucket2"
+  bucket = var.bucket2_name
 
   tags = {
-    Name        = "openhelpbucket2"
-    Environment = "dev"
+    Name        = var.bucket2_name
+    Environment = var.environment
   }
 }
 
 resource "aws_s3_bucket_versioning" "bucket2_versioning" {
   bucket = aws_s3_bucket.bucket2.id
+
   versioning_configuration {
     status = "Enabled"
   }
@@ -136,7 +138,7 @@ variable "bucket2_name" {
 }
 
 variable "environment" {
-  description = "Environment tag for the buckets"
+  description = "Environment tag"
   type        = string
   default     = "dev"
 }
@@ -148,12 +150,12 @@ variable "environment" {
 
 ```hcl
 output "bucket1_id" {
-  description = "ID of the first S3 bucket"
+  description = "ID of Bucket 1"
   value       = aws_s3_bucket.bucket1.id
 }
 
 output "bucket2_id" {
-  description = "ID of the second S3 bucket"
+  description = "ID of Bucket 2"
   value       = aws_s3_bucket.bucket2.id
 }
 ```
