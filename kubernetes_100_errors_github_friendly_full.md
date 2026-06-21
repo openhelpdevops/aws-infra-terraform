@@ -2316,6 +2316,17 @@ A cluster upgrade fails due to component version mismatches or configuration iss
 ### Solution
 
 1. Check the upgrade logs for errors.
+eg:- kubeadm upgrade apply v1.31.0
+Logs are displayed directly on the console.
+
+To save them:
+
+kubeadm upgrade apply v1.31.0 | tee upgrade.log
+
+After upgrade failures, kubelet logs are the first place to check.
+
+journalctl -u kubelet -xe
+
 2. Ensure all cluster components are compatible with the target
 Kubernetes version.
 3. Retry the upgrade using the correct kubeadm
