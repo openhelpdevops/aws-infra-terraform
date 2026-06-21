@@ -2317,6 +2317,7 @@ A cluster upgrade fails due to component version mismatches or configuration iss
 
 1. Check the upgrade logs for errors.
 eg:- kubeadm upgrade apply v1.31.0
+
 Logs are displayed directly on the console.
 
 To save them:
