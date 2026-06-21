@@ -1,10 +1,5 @@
 # 100 Kubernetes Errors and How to Resolve Them
 
-> GitHub-friendly Markdown version with a single color Mermaid troubleshooting architecture diagram at the top.
-
-_Source: user-provided pasted content._
-
-
 
 ## First Page: Kubernetes Error Troubleshooting Architecture
 
