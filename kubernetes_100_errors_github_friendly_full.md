@@ -164,13 +164,78 @@ flowchart TD
 
 ## Introduction
 
-Kubernetes has become the de facto standard for container orchestration, enabling organizations to deploy, manage, and scale applications with ease. Despite its immense power and flexibility, managing Kubernetes clusters can be challenging, especially for newcomers and even experienced practitioners. Kubernetes environments often present complex scenarios, with errors stemming from configuration mistakes, resource limitations, or underlying infrastructure issues.
+Kubernetes is the industry-standard platform for container orchestration, providing powerful capabilities for deploying, scaling, and managing modern applications. While Kubernetes offers exceptional flexibility and automation, troubleshooting issues in a production environment can be complex due to the interaction between containers, networking, storage, security, scheduling, and cluster infrastructure.
 
-This guide is designed to serve as a comprehensive resource for identifying and resolving the most common Kubernetes errors. From beginner-level issues such as CrashLoopBackOff and ImagePullBackOff to more advanced challenges like Ingress Redirect Loops or PersistentVolume Resizing, this guide covers a wide spectrum of scenarios. Each problem is broken down into its cause, along with step-by-step solutions, ensuring clarity and actionable insights.
+This guide presents 100 common Kubernetes errors and their solutions, covering a wide range of real-world operational scenarios encountered by DevOps engineers, Site Reliability Engineers (SREs), Platform Engineers, Cloud Engineers, and Kubernetes Administrators.
 
-Whether you are troubleshooting problems in development or production, the solutions provided here aim to reduce downtime, improve system reliability, and enhance your overall Kubernetes expertise. By systematically addressing these errors, Kubernetes practitioners can build robust, scalable, and resilient infrastructure for their applications.
+The scenarios range from frequently encountered issues such as:
 
-This guide is an essential companion for developers, DevOps engineers, and administrators working with Kubernetes, providing not just solutions but also best practices to prevent these issues from recurring. Let’s dive into the world of Kubernetes problem-solving and unlock the full potential of this powerful orchestration platform.
+CrashLoopBackOff
+ImagePullBackOff
+Pending Pods
+DNS Resolution Failures
+PersistentVolume Problems
+
+to more advanced production challenges including:
+
+Ingress SSL/TLS Issues
+Control Plane Failures
+Certificate Expiration
+Autoscaling Problems
+Storage and Networking Bottlenecks
+Cluster Upgrade Failures
+
+Each troubleshooting scenario includes:
+
+Problem description
+Root cause analysis
+Diagnostic commands
+Resolution steps
+Operational best practices
+
+The objective of this guide is to provide a practical reference that helps engineers quickly identify issues, reduce troubleshooting time, minimize application downtime, and maintain stable Kubernetes environments.
+
+Whether you are managing a small development cluster or a large enterprise Kubernetes platform, these troubleshooting patterns will help you diagnose problems systematically and implement reliable solutions with confidence.
+
+What You Will Learn
+
+By working through this guide, you will gain experience in troubleshooting:
+
+Pod & Workload Issues
+CrashLoopBackOff
+ImagePullBackOff
+Init Container Failures
+Readiness and Liveness Probe Errors
+Scheduling Problems
+Networking & Ingress Issues
+Service Connectivity Problems
+DNS Resolution Failures
+Ingress Routing Errors
+SSL/TLS Misconfigurations
+Network Policy Restrictions
+Storage Issues
+PersistentVolume (PV) Failures
+PersistentVolumeClaim (PVC) Problems
+StorageClass Misconfigurations
+Volume Mount Errors
+Security & RBAC Issues
+Unauthorized Access
+Forbidden Errors
+Service Account Problems
+Secret and ConfigMap Access Issues
+Cluster & Control Plane Issues
+Node Failures
+Kubelet Problems
+API Server Errors
+Certificate Expiration
+Cluster Upgrade Failures
+Scaling & Performance Issues
+Horizontal Pod Autoscaler (HPA) Problems
+Metrics Server Failures
+Cluster Autoscaler Issues
+Resource Quota Violations
+High CPU and Memory Consumptio
+
 
 
 ## 10 Most Important Things to Check for Diagnosing Kubernetes Errors
