@@ -15,6 +15,10 @@
 > - Availability-Zone-local outbound internet access from each private subnet through its own NAT Gateway
 > - No direct public access to the private VM
 
+To understand concept better watch the below video before proceeding further with terraform:-
+
+https://www.youtube.com/watch?v=9NWTcumxf-4&t=2315s
+
 ---
 
 ## 1. What we are building
