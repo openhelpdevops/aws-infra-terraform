@@ -1483,6 +1483,20 @@ terraform output -raw jump_public_ip
 
 An EC2 key pair is Regional. Create it in the same Region as the instances:
 
+for windows power shell use the below command
+
+```bash
+ cmd /c "aws ec2 create-key-pair --region us-east-1 --key-name openhelp-key --key-type rsa --key-format pem --query KeyMaterial --output text > openhelp-key-fixed.pem"
+```
+
+To delete key pair use the below command
+
+```bash
+ aws ec2 delete-key-pair --region us-east-1 --key-name openhelp-key
+```
+
+Foe linux:- 
+
 ```bash
 aws ec2 create-key-pair \
   --region us-east-1 \
