@@ -46,34 +46,6 @@ A `/24` subnet contains 256 addresses. AWS reserves five addresses in every subn
 
 <img width="1536" height="1024" alt="ChatGPT Image Jul 22, 2026, 02_55_00 PM" src="https://github.com/user-attachments/assets/8385171b-f826-4917-b28d-443dc1727aa3" />
 
-Manual steps involved if you are creating infra using aws UI:-
-
-
-
-
-
-1)create vpc with name openhelp-prod-vpc,  vpc_cidr to choose is = "10.0.0.0/16"
-2)Create internet gateways   openhelp-prod-igw, now click on internetgateway ID>> Actions>> Attach to VPC and choose VPC ID openhelp-prod-vpc we created.
-3)create subnet-> select vpc openhelp-prod-vpc--> zone-1a --> public_subnet1->  openhelp-prod--public-1   10.0.1.0/24 
-                                                          --> prvate_subnet1->  openhelp-prod--private-1  10.0.3.0/24  
-4)create subnet-> select vpc openhelp-prod-vpc--> zone-1b --> public_subnet2->   openhelp-prod--public-2   10.0.2.0/24 
-        
-5) Create nat gateway-->name=openhelp-prod-nat-1-->1 for public subnet 1-->openhelp-prod--public-1> activate elastic ip
-                   -->name=openhelp-prod-nat-2-->2 for public subnet 2--> openhelp-prod--public-2> activate elastic ip
-
-6)Create route table ->  1 for public--->openhelp-prod-public-rt--->seletc our main vpc openhelp-prod-vpc
-                                     ---> Click on openhelp-prod-public-rt route table ID--> Subnet associations--> associate  openhelp-prod--public-1 and openhelp-prod--public-2 to this.
-                                     ----->click on  openhelp-prod-public-rt--Route-->desination=0.0.0.0./24   Target=Internetgateway-->openhelp-prod-igw id
-
-7) Create route table ->  1 for Private--->openhelp-prod-private-rt-1--->seletc our main vpc openhelp-prod-vpc
-                                     ---> Click on openhelp-prod-private-rt-1 route table ID--> Subnet associations--> associate  openhelp-prod--private-1 to this.
-                                     ----->click on  openhelp-prod-private-rt-1 route table ID-   Edit route teable---> desination--0.0.0.0/0 -->Target=NAT  choose nat  gateway  openhelp-prod-nat-1  for this
-
-8) Create route table ->  1 for Private--->openhelp-prod-private-rt-2--->seletc our main vpc openhelp-prod-vpc
-                                     ---> Click on openhelp-prod-private-rt-2 route table ID--> Subnet associations--> associate  openhelp-prod-private-2 to this.
-                                     ----->click on  openhelp-prod-private-rt-2 route table ID-   Edit route teable---> desination--0.0.0.0/0 -->Target=NAT  choose nat  gateway  openhelp-prod-nat-2  for this
-
-9)Create ec2 instances in appropriate subnets, create security groups etc and try accessing via putty. 
 
 ### Architecture meaning
 
