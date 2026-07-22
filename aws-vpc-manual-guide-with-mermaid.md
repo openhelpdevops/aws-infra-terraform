@@ -35,84 +35,8 @@
 
 # Architecture Overview
 
-```mermaid
-flowchart TB
-    USER["Administrator Laptop<br/>SSH / PuTTY"]
-    INTERNET["Internet"]
-    IGW["Internet Gateway<br/>openhelp-prod-igw"]
+<img width="1536" height="1024" alt="ChatGPT Image Jul 22, 2026, 02_55_00 PM" src="https://github.com/user-attachments/assets/8c8c074a-4147-44da-93c0-efcb95524c17" />
 
-    subgraph VPC["VPC: openhelp-prod-vpc<br/>10.0.0.0/16"]
-        direction LR
-
-        subgraph AZA["Availability Zone: us-east-1a"]
-            direction TB
-
-            subgraph PUB1["Public Subnet 1<br/>openhelp-prod-public-1<br/>10.0.1.0/24"]
-                JUMP["Ubuntu Jump Host<br/>openhelp-prod-jump<br/>Public IP enabled"]
-                NAT1["NAT Gateway 1<br/>openhelp-prod-nat-1<br/>Elastic IP"]
-            end
-
-            subgraph PRI1["Private Subnet 1<br/>openhelp-prod-private-1<br/>10.0.3.0/24"]
-                WEB["Private Ubuntu Web Server<br/>openhelp-prod-private-web<br/>Nginx<br/>No public IP"]
-            end
-        end
-
-        subgraph AZB["Availability Zone: us-east-1b"]
-            direction TB
-
-            subgraph PUB2["Public Subnet 2<br/>openhelp-prod-public-2<br/>10.0.2.0/24"]
-                NAT2["NAT Gateway 2<br/>openhelp-prod-nat-2<br/>Elastic IP"]
-            end
-
-            subgraph PRI2["Private Subnet 2<br/>openhelp-prod-private-2<br/>10.0.4.0/24"]
-                FUTURE["Future Private Workload"]
-            end
-        end
-    end
-
-    USER -->|"SSH TCP 22"| JUMP
-    INTERNET --> IGW
-    IGW --> JUMP
-    IGW --> NAT1
-    IGW --> NAT2
-    JUMP -->|"SSH TCP 22"| WEB
-    WEB --> NAT1
-    FUTURE --> NAT2
-
-    classDef user fill:#ede9fe,stroke:#7c3aed,color:#111827
-    classDef internet fill:#dbeafe,stroke:#2563eb,color:#111827
-    classDef gateway fill:#fef3c7,stroke:#d97706,color:#111827
-    classDef compute fill:#dcfce7,stroke:#16a34a,color:#111827
-    classDef nat fill:#ffedd5,stroke:#ea580c,color:#111827
-    classDef future fill:#f3f4f6,stroke:#6b7280,color:#111827
-
-    class USER user
-    class INTERNET internet
-    class IGW gateway
-    class JUMP,WEB compute
-    class NAT1,NAT2 nat
-    class FUTURE future
-```
-
-## Traffic Flow
-
-```mermaid
-flowchart LR
-    A["Administrator Laptop"] -->|"SSH"| B["Public Jump Host"]
-    B -->|"SSH using private IP"| C["Private Nginx Server"]
-    C -->|"0.0.0.0/0"| D["Private Route Table 1"]
-    D --> E["NAT Gateway 1"]
-    E --> F["Internet Gateway"]
-    F --> G["Internet"]
-
-    classDef endpoint fill:#dbeafe,stroke:#2563eb,color:#111827
-    classDef compute fill:#dcfce7,stroke:#16a34a,color:#111827
-    classDef routing fill:#fef3c7,stroke:#d97706,color:#111827
-
-    class A,G endpoint
-    class B,C compute
-    class D,E,F routing
-```
 
 ---
 
@@ -135,6 +59,8 @@ flowchart LR
 | Private Web Server | `openhelp-prod-private-web` | `us-east-1a` | Private Ubuntu Nginx server |
 
 ---
+
+The below video is quite useful before doing the below  excerise
 
 # Step 1: Create the VPC
 
