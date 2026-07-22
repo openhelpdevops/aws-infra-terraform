@@ -39,6 +39,10 @@ A `/24` subnet contains 256 addresses. AWS reserves five addresses in every subn
 
 ## 2. Simple high-availability architecture diagram
 
+<img width="1536" height="1024" alt="ChatGPT Image Jul 22, 2026, 02_55_00 PM" src="https://github.com/user-attachments/assets/8385171b-f826-4917-b28d-443dc1727aa3" />
+
+
+
 ```mermaid
 flowchart TB
     Laptop["💻 Laptop<br/>Source: YOUR_PUBLIC_IP/32"]
