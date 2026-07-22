@@ -52,9 +52,7 @@ Manual steps involved if you are creating infra using aws UI:-
 2)Create internet gateways   openhelp-prod-igw, now click on internetgateway ID>> Actions>> Attach to VPC and choose VPC ID openhelp-prod-vpc we created.
 3)create subnet-> select vpc openhelp-prod-vpc--> zone-1a --> public_subnet1->  openhelp-prod--public-1   10.0.1.0/24 
                                                           --> prvate_subnet1->  openhelp-prod--private-1  10.0.3.0/24  
-
 4)create subnet-> select vpc openhelp-prod-vpc--> zone-1b --> public_subnet2->   openhelp-prod--public-2   10.0.2.0/24 
-        
         
 5) Create nat gateway-->name=openhelp-prod-nat-1-->1 for public subnet 1-->openhelp-prod--public-1> activate elastic ip
                    -->name=openhelp-prod-nat-2-->2 for public subnet 2--> openhelp-prod--public-2> activate elastic ip
