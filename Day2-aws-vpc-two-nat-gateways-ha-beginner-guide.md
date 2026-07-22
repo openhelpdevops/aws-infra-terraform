@@ -39,79 +39,10 @@ A `/24` subnet contains 256 addresses. AWS reserves five addresses in every subn
 
 ## 2. Simple high-availability architecture diagram
 
+
 <img width="1536" height="1024" alt="ChatGPT Image Jul 22, 2026, 02_55_00 PM" src="https://github.com/user-attachments/assets/8385171b-f826-4917-b28d-443dc1727aa3" />
 
 
-
-```mermaid
-flowchart TB
-    Laptop["💻 Laptop<br/>Source: YOUR_PUBLIC_IP/32"]
-    Internet["🌐 Internet"]
-
-    subgraph AWS["AWS Region: us-east-1"]
-        subgraph VPC["VPC: 10.0.0.0/16"]
-
-            IGW["Internet Gateway<br/>Attached to VPC"]
-
-            subgraph AZ1["Availability Zone: us-east-1a"]
-                PUB1["Public Subnet 1<br/>10.0.1.0/24"]
-                NAT1["NAT Gateway 1<br/>Elastic IP 1<br/>Located in Public Subnet 1"]
-                JUMP["Ubuntu Jump Host<br/>Private IP: 10.0.1.x<br/>Public IP: assigned by AWS"]
-                PRI1["Private Subnet 1<br/>10.0.3.0/24"]
-                WEB["Private Ubuntu Web VM<br/>Private IP: 10.0.3.x<br/>Public IP: none"]
-                PRT1["Private Route Table 1<br/>0.0.0.0/0 → NAT Gateway 1"]
-
-                PUB1 --- NAT1
-                PUB1 --- JUMP
-                PRI1 --- WEB
-                PRI1 --- PRT1
-            end
-
-            subgraph AZ2["Availability Zone: us-east-1b"]
-                PUB2["Public Subnet 2<br/>10.0.2.0/24"]
-                NAT2["NAT Gateway 2<br/>Elastic IP 2<br/>Located in Public Subnet 2"]
-                PRI2["Private Subnet 2<br/>10.0.4.0/24"]
-                FUTURE["Future Private Workload<br/>Private IP: 10.0.4.x<br/>Public IP: none"]
-                PRT2["Private Route Table 2<br/>0.0.0.0/0 → NAT Gateway 2"]
-
-                PUB2 --- NAT2
-                PRI2 --- FUTURE
-                PRI2 --- PRT2
-            end
-
-            PUBLICRT["Public Route Table<br/>0.0.0.0/0 → Internet Gateway"]
-            PUB1 --- PUBLICRT
-            PUB2 --- PUBLICRT
-        end
-    end
-
-    Laptop -->|"SSH TCP/22"| JUMP
-    JUMP -->|"SSH using private IP"| WEB
-
-    JUMP --> IGW
-    NAT1 --> IGW
-    NAT2 --> IGW
-    IGW <--> Internet
-
-    WEB -->|"Outbound internet"| NAT1
-    FUTURE -->|"Outbound internet"| NAT2
-
-    classDef outer fill:#fff7e6,stroke:#ff9900,stroke-width:3px,color:#111;
-    classDef public fill:#e8f5e9,stroke:#2e7d32,stroke-width:3px,color:#111;
-    classDef private fill:#e3f2fd,stroke:#1565c0,stroke-width:3px,color:#111;
-    classDef nat fill:#fff3e0,stroke:#ef6c00,stroke-width:3px,color:#111;
-    classDef route fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px,color:#111;
-    classDef client fill:#fce4ec,stroke:#c2185b,stroke-width:2px,color:#111;
-    classDef gateway fill:#fffde7,stroke:#f9a825,stroke-width:3px,color:#111;
-
-    class AWS,VPC outer;
-    class PUB1,PUB2,JUMP public;
-    class PRI1,PRI2,WEB,FUTURE private;
-    class NAT1,NAT2 nat;
-    class PUBLICRT,PRT1,PRT2 route;
-    class Laptop client;
-    class IGW,Internet gateway;
-```
 
 ### Architecture meaning
 
