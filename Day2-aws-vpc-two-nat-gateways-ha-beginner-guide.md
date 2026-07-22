@@ -48,6 +48,10 @@ A `/24` subnet contains 256 addresses. AWS reserves five addresses in every subn
 
 Manual steps involved if you are creating infra using aws UI:-
 
+
+
+
+
 1)create vpc with name openhelp-prod-vpc,  vpc_cidr to choose is = "10.0.0.0/16"
 2)Create internet gateways   openhelp-prod-igw, now click on internetgateway ID>> Actions>> Attach to VPC and choose VPC ID openhelp-prod-vpc we created.
 3)create subnet-> select vpc openhelp-prod-vpc--> zone-1a --> public_subnet1->  openhelp-prod--public-1   10.0.1.0/24 
