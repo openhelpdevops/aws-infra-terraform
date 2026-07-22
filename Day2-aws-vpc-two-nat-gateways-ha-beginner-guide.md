@@ -17,7 +17,7 @@
 
 To understand concept better watch the below video before proceeding further with terraform:-
 
-https://www.youtube.com/watch?v=9NWTcumxf-4&t=2315s
+https://www.youtube.com/watch?v=pI6glWVEkcY&t=1s
 
 ---
 
