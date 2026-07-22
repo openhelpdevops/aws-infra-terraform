@@ -1749,6 +1749,12 @@ flowchart TD
     class IGW gateway;
 ```
 
+screenshot from aws console
+
+<img width="1175" height="464" alt="image" src="https://github.com/user-attachments/assets/823f2274-ea3e-461f-a467-35cd5bb8c286" />
+
+
+
 ---
 
 ## 27. View the outputs
