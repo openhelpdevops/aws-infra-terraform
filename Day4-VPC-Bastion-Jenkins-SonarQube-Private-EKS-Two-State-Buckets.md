@@ -1,4 +1,4 @@
-# Day 3 Extension: HA VPC + Bastion + Jenkins/SonarQube + Private EKS + Two Terraform State Buckets
+# Day 4 Extension: HA VPC + Bastion + Jenkins/SonarQube + Private EKS + Two Terraform State Buckets
 
 > **Beginner-friendly, production-style Terraform extension**
 >
