@@ -65,6 +65,10 @@
 
 The below video is quite useful before doing the below  excerise
 
+https://www.youtube.com/watch?v=ydxEeVAqVdo&t=1143s
+
+
+
 # Step 1: Create the VPC
 
 ## Console Path
