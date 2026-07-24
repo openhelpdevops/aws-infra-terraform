@@ -874,6 +874,8 @@ The blocks below are arranged in the same order as the IAM story, you may refer 
 7. Create the tools role and connect the same trust rule to it
 8. Give the tools role its job permissions and instance profile
 ```
+---
+
 
 <img width="1536" height="1024" alt="ChatGPT Image Jul 24, 2026, 05_04_03 PM" src="https://github.com/user-attachments/assets/3ea3d1a3-7959-4000-adf1-8b442e5cef7b" />
 
