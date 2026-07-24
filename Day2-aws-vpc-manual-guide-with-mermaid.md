@@ -60,6 +60,9 @@
 
 ---
 
+<img width="1122" height="1402" alt="ChatGPT Image Jul 24, 2026, 04_37_53 PM" src="https://github.com/user-attachments/assets/5bb409c5-a004-491d-8fb1-d8cbbc052996" />
+
+
 The below video is quite useful before doing the below  excerise
 
 # Step 1: Create the VPC
