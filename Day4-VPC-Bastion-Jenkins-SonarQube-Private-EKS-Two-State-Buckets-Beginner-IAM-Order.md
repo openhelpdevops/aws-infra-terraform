@@ -862,7 +862,7 @@ The bastion needs permission to describe EKS and build a kubeconfig. Jenkins nee
 
 ### Beginner-friendly order used in this file
 
-The blocks below are arranged in the same order as the IAM story:
+The blocks below are arranged in the same order as the IAM story, you may refer the below image to understand it better.
 
 ```text
 1. Find the AWS account and partition
@@ -875,7 +875,8 @@ The blocks below are arranged in the same order as the IAM story:
 8. Give the tools role its job permissions and instance profile
 ```
 
-<img width="1536" height="1024" alt="ChatGPT Image Jul 24, 2026, 07_44_23 AM" src="https://github.com/user-attachments/assets/f453898d-eba1-4886-8669-ec498f59dd2b" />
+<img width="1536" height="1024" alt="ChatGPT Image Jul 24, 2026, 05_04_03 PM" src="https://github.com/user-attachments/assets/3ea3d1a3-7959-4000-adf1-8b442e5cef7b" />
+
 
 
 The most important connection is:
