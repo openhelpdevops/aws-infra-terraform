@@ -875,6 +875,9 @@ The blocks below are arranged in the same order as the IAM story:
 8. Give the tools role its job permissions and instance profile
 ```
 
+<img width="1536" height="1024" alt="ChatGPT Image Jul 24, 2026, 07_44_23 AM" src="https://github.com/user-attachments/assets/f453898d-eba1-4886-8669-ec498f59dd2b" />
+
+
 The most important connection is:
 
 ```hcl
