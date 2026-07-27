@@ -37,58 +37,8 @@
 
 ## 1. Final architecture
 
-```mermaid
-flowchart TB
-    USER[Administrator / Developer] -->|SSH 22| BASTION
-    USER -->|Jenkins 8080 / SonarQube 9000| TOOLS
+<img width="1672" height="941" alt="ChatGPT Image Jul 27, 2026, 10_50_29 AM" src="https://github.com/user-attachments/assets/0ca76060-0208-4cd5-8297-faa7369fcec1" />
 
-    subgraph AWS[AWS Region us-east-1]
-      S3A[(S3: EC2/VPC state)]
-      DDBA[(DynamoDB: EC2 state lock)]
-      S3B[(S3: EKS/ECR state)]
-      DDBB[(DynamoDB: EKS state lock)]
-      ECR[(Amazon ECR private repository)]
-
-      subgraph VPC[VPC 10.0.0.0/16]
-        IGW[Internet Gateway]
-
-        subgraph AZA[us-east-1a]
-          PUB1[Public subnet 10.0.1.0/24]
-          BASTION[Bastion / kubectl / Helm / Terraform]
-          NAT1[NAT Gateway 1]
-          PRIV1[Private subnet 10.0.3.0/24]
-          NODEA[EKS worker nodes]
-        end
-
-        subgraph AZB[us-east-1b]
-          PUB2[Public subnet 10.0.2.0/24]
-          TOOLS[Jenkins + SonarQube host]
-          NAT2[NAT Gateway 2]
-          PRIV2[Private subnet 10.0.4.0/24]
-          NODEB[EKS worker nodes]
-        end
-
-        CP[EKS managed control plane\nAWS operates HA control-plane instances]
-
-        IGW --- PUB1
-        IGW --- PUB2
-        PUB1 --> NAT1 --> PRIV1
-        PUB2 --> NAT2 --> PRIV2
-        PRIV1 --- NODEA
-        PRIV2 --- NODEB
-        CP --- NODEA
-        CP --- NODEB
-      end
-
-      TOOLS -->|docker push| ECR
-      NODEA -->|image pull through NAT/VPC endpoints| ECR
-      NODEB -->|image pull through NAT/VPC endpoints| ECR
-      BASTION -->|kubectl| CP
-      TOOLS -->|kubectl deployment| CP
-      S3A --- DDBA
-      S3B --- DDBB
-    end
-```
 
 > The original architecture image is retained below for reference. The Mermaid diagram above is the updated source-of-truth architecture.
 
