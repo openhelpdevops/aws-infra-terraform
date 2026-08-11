@@ -63,6 +63,18 @@
 <img width="1122" height="1402" alt="ChatGPT Image Jul 24, 2026, 04_37_53 PM" src="https://github.com/user-attachments/assets/5bb409c5-a004-491d-8fb1-d8cbbc052996" />
 
 
+
+## What is the difference between subnet mask 255.255.255.0 and 255.255.255.128?
+255.255.255.0, a /24, allows 256 addresses with 254 usable hosts and is typical for a moderately sized network.
+255.255.255.128, a /25, splits that same original /24 space into two subnets of 128 addresses each, 126 usable
+hosts, which I'd use when I want two smaller isolated segments instead of one larger flat one.
+
+# How do you subnet 192.168.1.0/24 into 4 equal subnets?
+Borrowing 2 bits gives a /26 mask, 255.255.255.192, producing four subnets: 192.168.1.0/26, 192.168.1.64/26,
+192.168.1.128/26, and 192.168.1.192/26 -- each with 62 usable hosts.
+
+
+
 The below video is quite useful before doing the below  excerise
 
 https://www.youtube.com/watch?v=ydxEeVAqVdo&t=1143s
