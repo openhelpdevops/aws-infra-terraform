@@ -169,6 +169,45 @@ ami-REPLACE_ME
 openhelp-key
 ```
 
+```bash
+PS C:\Users\sreej\Desktop\sreejith_devops> aws ec2 describe-images --owners 099720109477 --filters "Name=name,Values=ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-*" "Name=state,Values=available" --query 'Images | sort_by(@,&CreationDate)[-1].[ImageId,Name]' --output table --region us-east-1
+------------------------------------------------------------------------                                                                                                                                                                                                                                                                                                                                                                           
+|                            DescribeImages                            |
++----------------------------------------------------------------------+
+|  ami-052355af2a014bd2c                                               |
+|  ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-20260714  |
++----------------------------------------------------------------------+
+```
+
+delete and create new key
+
+```bash
+PS C:\Users\sreej\Desktop\sreejith_devops> aws ec2 delete-key-pair --region us-east-1 --key-name openhelp-key; Remove-Item -Force openhelp-key.pem -ErrorAction SilentlyContinue; aws ec2 create-key-pair --region us-east-1 --key-name openhelp-key --key-type rsa --key-format pem --query KeyMaterial --output text | Out-File -Encoding ascii openhelp-key.pem
+{                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+    "Return": true,
+    "KeyPairId": "key-0a8784646cce3c7a5"
+}
+```
+
+Get free tier instance list
+
+```bash
+PS C:\Users\sreej\Desktop\sreejith_devops\openhelp-eks-microservices-terraform\ec2-infra> aws ec2 describe-instance-types --region us-east-1 --filters "Name=free-tier-eligible,Values=true" --query "InstanceTypes[].InstanceType" --output table
+-----------------------                                                                                                                                                                                                                                                                                                                                                                                                                            
+|DescribeInstanceTypes|
++---------------------+
+|  c7i-flex.large     |
+|  t3.micro           |
+|  t4g.small          |
+|  t4g.micro          |
+|  t3.small           |
+|  m7i-flex.large     |
++---------------------+
+
+```
+
+
+
 Update them with:
 
 - your AWS account ID
@@ -182,15 +221,7 @@ For Linux/macOS you can find placeholders with:
 grep -R "123456789012\|83.24.100.50/32\|ami-REPLACE_ME" -n .
 ```
 
-## Step 2 — Create EC2 key pair if needed
 
-PowerShell-safe example:
-
-```powershell
-cmd /c "aws ec2 create-key-pair --region us-east-1 --key-name openhelp-key --key-type rsa --key-format pem --query KeyMaterial --output text > openhelp-key.pem"
-```
-
-Never commit the `.pem` file.
 
 ## Step 3 — Bootstrap Terraform state
 
@@ -457,3 +488,78 @@ They are not needed in this architecture. Your OpenHelp Terraform controls ECR f
 4. Jenkins service pipelines
    build -> scan/test -> docker push -> deployment/GitOps
 ```
+
+## Cleanup cluster
+
+
+Yes. For this bundle, destroy in the reverse order of creation:
+
+eks-infra
+ec2-infra
+bootstrap-state last
+
+Your README explicitly uses this reverse dependency order.
+
+1. Destroy EKS + 11 ECR repositories
+
+Go to:
+
+openhelp-eks-microservices-terraform/eks-infra
+
+Run:
+
+terraform init
+
+terraform plan -destroy
+
+terraform destroy
+
+Type:
+
+yes
+
+This removes the EKS cluster, managed node group, EKS IAM/access resources, add-ons, KMS/ECR resources, and the 11 ECR repositories that belong to this Terraform state. Your bundle creates EKS and all 11 ECR repositories together from eks-infra.
+
+2
+Your current configuration deliberately has:
+
+ecr_force_delete = false
+
+Therefore, if any ECR repository contains Docker images, Terraform may fail to delete that repository. The README calls this a production safety feature.
+
+If this is only a lab and you want to delete everything, edit:
+
+eks-infra/terraform.tfvars
+
+and set:
+
+ecr_force_delete = true
+
+Then run:
+
+terraform apply
+
+After that:
+
+terraform destroy
+
+
+
+3. Destroy VPC + EC2 infrastructure
+
+Now:
+
+cd ../ec2-infra
+
+Run:
+
+terraform init
+
+terraform plan -destroy
+
+terraform destroy
+
+Type:
+
+yes
+
