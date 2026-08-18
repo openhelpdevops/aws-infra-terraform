@@ -796,6 +796,7 @@ Run:
 
 ```text
 terraform plan
+terraform apply
 ```
 
 Expected:
