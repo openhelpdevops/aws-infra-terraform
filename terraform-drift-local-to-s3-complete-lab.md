@@ -446,22 +446,34 @@ yes
 Possible output:
 
 ```text
-aws_vpc.demo: Creation complete
-aws_internet_gateway.demo: Creation complete
-aws_subnet.public: Creation complete
-aws_route_table.public: Creation complete
-aws_route.internet: Creation complete
-aws_route_table_association.public: Creation complete
-aws_security_group.demo: Creation complete
-aws_instance.demo: Creation complete [id=i-0123456789abcdef0]
 
-Apply complete!
+aws_vpc.demo: Creating...
+aws_vpc.demo: Creation complete after 3s [id=vpc-0a5267cc5c02797c1]
+aws_internet_gateway.demo: Creating...
+aws_route_table.public: Creating...
+aws_subnet.public: Creating...
+aws_security_group.demo: Creating...
+aws_route_table.public: Creation complete after 1s [id=rtb-0b0df81d35335ea0a]
+aws_internet_gateway.demo: Creation complete after 1s [id=igw-0050b4bfb4c72416c]
+aws_route.internet: Creating...
+aws_route.internet: Creation complete after 2s [id=r-rtb-0b0df81d35335ea0a1080289494]
+aws_security_group.demo: Creation complete after 4s [id=sg-0285a7cc41df10ef5]
+aws_subnet.public: Still creating... [00m10s elapsed]
+aws_subnet.public: Creation complete after 12s [id=subnet-026b7cc168e0ee7fd]
+aws_route_table_association.public: Creating...
+aws_instance.demo: Creating...
+aws_route_table_association.public: Creation complete after 1s [id=rtbassoc-0d70e48b09084f40f]
+aws_instance.demo: Still creating... [00m10s elapsed]
+aws_instance.demo: Creation complete after 14s [id=i-0b2e12ce209b30eb3]
+
+Apply complete! Resources: 8 added, 0 changed, 0 destroyed.
 
 Outputs:
 
-instance_id   = "i-0123456789abcdef0"
+instance_id = "i-0b2e12ce209b30eb3"
 instance_type = "t3.micro"
-public_ip     = "54.210.10.25"
+public_ip = "18.214.23.9"
+ssh_command = "ssh -i openhelp-key.pem ubuntu@18.214.23.9"
 ```
 
 ---
