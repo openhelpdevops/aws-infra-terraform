@@ -475,6 +475,22 @@ instance_type = "t3.micro"
 public_ip = "18.214.23.9"
 ssh_command = "ssh -i openhelp-key.pem ubuntu@18.214.23.9"
 ```
+terraform output reads the values from your Terraform state that were defined using output blocks in your .tf files.
+
+```text
+PS C:\Users\sreej\Desktop\sreejith_devops\terraform-drift-lab> terraform output
+instance_id = "i-0b2e12ce209b30eb3"
+instance_type = "t3.micro"
+public_ip = "18.214.23.9"
+ssh_command = "ssh -i openhelp-key.pem ubuntu@18.214.23.9"
+```
+To list each items use below command
+```text
+terraform output -raw instance_id
+i-0b2e12ce209b30eb3
+terraform output -raw public_ip
+18.214.23.9
+```
 
 ---
 
