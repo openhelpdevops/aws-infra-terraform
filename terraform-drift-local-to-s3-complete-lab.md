@@ -546,6 +546,49 @@ terraform-drift-lab/
 
 ---
 
+## 12.1. Create the EC2 key pair
+
+An EC2 key pair is Regional. Create it in the same Region as the instances:
+
+for windows power shell use the below command
+
+```bash
+ cmd /c "aws ec2 create-key-pair --region us-east-1 --key-name openhelp-key --key-type rsa --key-format pem --query KeyMaterial --output text > openhelp-key-fixed.pem"
+```
+
+To delete key pair use the below command
+
+```bash
+ aws ec2 delete-key-pair --region us-east-1 --key-name openhelp-key
+```
+
+Foe linux:- 
+
+```bash
+aws ec2 create-key-pair \
+  --region us-east-1 \
+  --key-name openhelp-key \
+  --query 'KeyMaterial' \
+  --output text > openhelp-key.pem
+```
+
+Restrict the private-key permissions on Linux, macOS, Git Bash or WSL:
+
+```bash
+chmod 400 openhelp-key.pem
+```
+
+Verify it:
+
+```bash
+aws ec2 describe-key-pairs \
+  --region us-east-1 \
+  --key-names openhelp-key \
+  --output table
+```
+
+
+
 # 13. SSH to the Ubuntu Instance
 
 Get the public IP:
