@@ -1208,6 +1208,24 @@ Only the state storage location moves.
 
 ---
 
+Use this command to list the Terraform state objects inside your S3 bucket:
+
+```text
+PS C:\Users\sreej\Desktop\sreejith_devops\terraform-drift-lab\state-backend> aws s3 ls s3://sreejith-openhelp-drift-lab-state-2026/ --recursive
+```
+
+<img width="1161" height="41" alt="image" src="https://github.com/user-attachments/assets/ba81c1ef-2320-4308-8b19-c563159156ca" />
+
+To see all versions of the state file when bucket versioning is enabled:
+```text
+aws s3api list-object-versions --bucket sreejith-openhelp-drift-lab-state-2026 --prefix drift-lab/terraform.tfstate
+```
+
+<img width="1375" height="600" alt="image" src="https://github.com/user-attachments/assets/2b844657-77e7-4065-8174-8494c7726756" />
+
+
+
+
 # 33. State Migration Diagram
 
 ```mermaid
