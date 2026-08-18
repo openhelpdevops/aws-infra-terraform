@@ -1361,6 +1361,82 @@ terraform plan
 
 It changes a resource address inside the Terraform state without recreating the real resource.
 
+
+Suppose you originally have:
+```bash
+resource "aws_instance" "demo" {
+  ami           = data.aws_ami.ubuntu.id
+  instance_type = "t3.micro"
+
+
+  tags = {
+    Name = "terraform-demo"
+  }
+}
+```
+Terraform state knows this EC2 instance as:
+
+aws_instance.demo
+
+<img width="638" height="53" alt="image" src="https://github.com/user-attachments/assets/3aaff478-f52d-4d7b-a088-a43e5e950eee" />
+
+
+You change your Terraform code in main.tf to:
+```bash
+resource "aws_instance" "web" {
+  ami           = data.aws_ami.ubuntu.id
+  instance_type = "t3.micro"
+
+
+  tags = {
+    Name = "terraform-demo"
+  }
+}
+```
+If you simply run:
+```bash
+terraform plan
+```
+Terraform may think:
+
+aws_instance.demo
+    -> destroy
+
+
+aws_instance.web
+    -> create
+
+because Terraform identifies resources using their resource address, not only by the AWS instance ID.
+
+To tell Terraform:
+
+“This new aws_instance.web is actually the same existing resource that used to be called aws_instance.demo.”
+
+run:
+```bash
+terraform state mv aws_instance.demo aws_instance.web
+```
+Possible output:
+
+Move "aws_instance.demo" to "aws_instance.web"
+Successfully moved 1 object(s).
+
+Now check:
+```bash
+terraform state list
+```
+Before:
+
+aws_instance.demo
+
+After:
+
+aws_instance.web
+
+Nothing was recreated.
+
+
+
 ---
 
 # 42. Destroy the Main Infrastructure
