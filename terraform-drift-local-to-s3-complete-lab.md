@@ -1304,6 +1304,142 @@ EC2 instance ID stayed the same
 ```
 
 ---
+# What is terraform import and why do we use it?
+
+terraform import is used to bring an already existing infrastructure resource under Terraform management.
+
+For example, if an EC2 instance was created manually in the AWS console, Terraform does not automatically know about it. We first define the corresponding resource block in Terraform and then use terraform import to associate the existing AWS resource with that Terraform resource in the state file.
+
+
+1. Create a second EC2 manually
+
+In AWS Console:
+
+EC2 → Launch instance
+
+Use:
+```text
+Ubuntu 24.04
+t3.micro
+Same VPC: terraform-drift-demo-vpc
+Same public subnet
+Same security group
+Name: manually-created-server
+```
+After creation, note its instance ID, for example:
+
+i-0abcdef1234567890
+
+At this moment:
+
+AWS has the EC2
+
+but Terraform does not know about it.
+
+Check:
+
+terraform state list
+
+You will still see your existing managed instance:
+
+aws_instance.web
+
+but you will not see:
+
+aws_instance.existing
+
+2. Add a Terraform resource block
+
+Add this to main.tf
+
+```text
+resource "aws_instance" "existing" {
+ami = "ami-xxxxxxxxxxxxxxxxx"
+instance_type = "t3.micro"
+
+subnet_id = aws_subnet.public.id
+
+vpc_security_group_ids = [
+aws_security_group.demo.id
+]
+
+key_name = var.key_name
+
+associate_public_ip_address = true
+
+tags = {
+Name = "manually-created-server"
+}
+}
+```
+
+Use the same AMI that the manually created EC2 is using.
+
+You can find it with:
+
+```text
+aws ec2 describe-instances --instance-ids i-0abcdef1234567890 --region us-east-1 --query "Reservations[0].Instances[0].ImageId" --output text
+```
+
+
+Possible output:
+
+ami-0123456789abcdef0
+
+Put that value in the resource:
+
+ami = "ami-0123456789abcdef0"
+
+Do not run terraform apply yet
+
+At this point Terraform code contains:
+
+aws_instance.existing
+
+but Terraform state does not.
+
+If you run terraform plan, Terraform may propose creating a new EC2 because it does not yet know that your manually created instance corresponds to this resource block.
+
+Instead, import it.
+
+
+
+4. Import the existing EC2
+
+Run:
+terraform import aws_instance.existing <instance id>
+
+```text
+terraform import aws_instance.existing i-0abcdef1234567890
+```
+
+You can also get it from AWS CLI with:
+```text
+aws ec2 describe-instances --region us-east-1 --query "Reservations[].Instances[].[InstanceId,Tags[?Key=='Name']|[0].Value,State.Name]" --output table
+```
+
+ Check the state
+
+Run:
+```text
+terraform state list
+```
+Now you should see both:
+
+aws_instance.web
+
+aws_instance.existing
+
+Check the imported instance:
+
+terraform state show aws_instance.existing
+
+Possible output:
+
+id = "i-0abcdef1234567890"
+
+
+
 
 # 35. Interview Answer — What is Terraform Drift?
 
