@@ -849,6 +849,18 @@ flowchart TD
 # EXERCISE 2 — CREATE S3 AND MIGRATE LOCAL STATE
 
 ---
+## List state file directory in local file system
+
+```text
+PS C:\Users\sreej\Desktop\sreejith_devops\terraform-drift-lab> ls
+Mode                 LastWriteTime         Length Name                                                                                                                                                                                                                                                                                                                                                       
+----                 -------------         ------ ----                                                                                                                                                                                                                                                                                                                                             
+d-----        18-08-2026     11:01                .terraform                                                                                                                                                                                                                                                                                                                                                 
+-a----        18-08-2026     11:01           1481 .terraform.lock.hcl                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+-a----        18-08-2026     12:06          22406 terraform.tfstate                                                                                                                                                                                                                                                                                                                                          
+-a----        18-08-2026     12:06          21747 terraform.tfstate.backup                                                                                                                                                                                                                                                                                       ```                                        
+
+
 
 # 22. Goal
 
