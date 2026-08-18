@@ -851,18 +851,10 @@ flowchart TD
 ---
 ## List state file directory in local file system
 
-```text
-PS C:\Users\sreej\Desktop\sreejith_devops\terraform-drift-lab> ls
-Mode                 LastWriteTime         Length Name                                                                                                                                                                                                                                                                                                                                                       
-----                 -------------         ------ ----                                                                                                                                                                                                                                                                                                                                             
-d-----        18-08-2026     11:01                .terraform                                                                                                                                                                                                                                                                                                                                                 
--a----        18-08-2026     11:01           1481 .terraform.lock.hcl                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
--a----        18-08-2026     12:06          22406 terraform.tfstate                                                                                                                                                                                                                                                                                                                                          
--a----        18-08-2026     12:06          21747 terraform.tfstate.backup                                                                                                                                                                                                                                                                                       ```                                        
+<img width="648" height="304" alt="image" src="https://github.com/user-attachments/assets/7f5af846-3488-4549-aefe-c2d551bb0f6c" />
 
 
-
-# 22. Goal
+##  22. Goal
 
 Currently:
 
