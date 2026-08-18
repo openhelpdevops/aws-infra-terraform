@@ -994,17 +994,8 @@ variable "state_bucket_name" {
 ```hcl
 aws_region = "us-east-1"
 
-state_bucket_name = "YOUR-UNIQUE-TERRAFORM-STATE-BUCKET"
-```
-
-Example:
-
-```hcl
 state_bucket_name = "sreejith-openhelp-drift-lab-state-2026"
 ```
-
-S3 bucket names must be globally unique.
-
 ---
 
 # 28. Create the S3 Bucket
@@ -1381,7 +1372,7 @@ aws_instance.demo
 <img width="638" height="53" alt="image" src="https://github.com/user-attachments/assets/3aaff478-f52d-4d7b-a088-a43e5e950eee" />
 
 
-You change your Terraform code in main.tf to:
+You manually change your Terraform code in main.tf to:
 ```bash
 resource "aws_instance" "web" {
   ami           = data.aws_ami.ubuntu.id
@@ -1435,6 +1426,7 @@ aws_instance.web
 
 Nothing was recreated.
 
+<img width="644" height="63" alt="image" src="https://github.com/user-attachments/assets/d64273cc-b3a5-4152-a68d-4acf89f52480" />
 
 
 ---
