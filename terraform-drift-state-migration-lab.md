@@ -293,6 +293,12 @@ public_ip = "54.10.20.30"
 
 Your real values will be different.
 
+If you do not want to prompt for "yes" option you may use the below command
+```text
+terraform apply -auto-approve
+```
+Terraform immediately applies the changes.
+
 ---
 
 # 12. Understand the Local Terraform State
