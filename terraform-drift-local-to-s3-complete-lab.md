@@ -1471,6 +1471,34 @@ Nothing was recreated.
 
 <img width="644" height="63" alt="image" src="https://github.com/user-attachments/assets/d64273cc-b3a5-4152-a68d-4acf89f52480" />
 
+Update your outputs.tf to use aws_instance.web everywhere:
+
+edit outputs.tf and make sure it changed as like the below
+```bash
+output "instance_id" {
+  value = aws_instance.web.id
+}
+
+output "instance_type" {
+  value = aws_instance.web.instance_type
+}
+
+output "public_ip" {
+  value = aws_instance.web.public_ip
+}
+
+output "ssh_command" {
+  value = "ssh -i openhelp-key.pem ubuntu@${aws_instance.web.public_ip}"
+}
+
+```
+Then run:
+
+```bash
+terraform fmt
+terraform validate
+terraform plan
+```
 
 ---
 
